@@ -20,4 +20,4 @@ Hasil validasi akhir: -
 
 ## Halaman GitHub
 
-URL: [tempel URL halaman P2]
+URL: https://niakhoirunnisa001.github.io/2622500025-PWB-SI1A/pertemuan-02/index.html
