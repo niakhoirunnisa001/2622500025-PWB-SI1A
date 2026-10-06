@@ -1,177 +1,212 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Judul Halaman</title>
-  <style>
-    #about,
-    #contact {
-      background-color: #ffffff;
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 700px;
-      margin: 20px auto;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    #about h2,
-    #contact h2 {
-      color: #003366;
-      border-bottom: 2px solid #003366;
-      padding-bottom: 6px;
-      margin-top: 0;
-      margin-bottom: 16px;
-    }
-
-    #about p,
-    #contact label {
-      display: flex;
-      justify-content: flex-start;
-      align-items: baseline;
-      margin: 0;
-      padding: 6px 0;
-      border-bottom: 1px solid #e6e6e6;
-    }
-
-    #about strong,
-    #contact label>span {
-      min-width: 180px;
-      color: #003366;
-      font-weight: 600;
-      text-align: right;
-      padding-right: 16px;
-      flex-shrink: 0;
-    }
-
-    #contact input,
-    #contact textarea {
-      flex: 1;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 8px;
-      color: #000;
-      font-weight: normal;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    #contact button {
-      margin-top: 10px;
-      display: inline-block;
-      padding: 10px 24px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s ease;
-      margin-right: 8px;
-    }
-
-    #contact button[type="submit"] {
-      background-color: #003366;
-      color: #fff;
-      font-weight: 600;
-    }
-
-    #contact button[type="reset"] {
-      background-color: #b4b4b4;
-      color: #272727;
-      font-weight: 500;
-    }
-
-    #contact button[type="submit"]:hover {
-      background-color: #0379ee;
-      transform: translateY(-1px);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    #contact button[type="reset"]:hover {
-      background-color: #cccccc;
-      transform: translateY(-1px);
-    }
-
-    @media (max-width: 600px) {
-      #about p,
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Mahasiswa</title>
+    <style>
+      #about {
+        background-color: #ffffff;
+        border: 1px solid #d0d7de;
+        padding: 20px;
+        margin: 20px 0;
+        font-family: Arial, sans-serif;
+      }
+      #about h2 {
+        color: #003366;
+        border-bottom: 2px solid #003366;
+        padding-bottom: 6px;
+        margin-bottom: 16px;
+      }
+      #about h3 {
+        color: #1f4e78;
+        margin-bottom: 6px;
+      }
+      #about p {
+        margin: 6px 0;
+        padding: 6px 0;
+        border-bottom: 1px solid #e6e6e6;
+      }
+      #about ol {
+        color: #333333;
+        margin: 8px 0;
+        padding: 8px 24px;
+        border: 1px solid #e6e6e6;
+      }
+      #contact {
+        background-color: #f8fafc;
+        border: 1px solid #cbd5e1;
+        padding: 20px;
+        margin: 20px 0;
+        font-family: Arial, sans-serif;
+      }
+      #contact h2 {
+        color: #003366;
+        border-bottom: 2px solid #003366;
+        padding-bottom: 6px;
+        margin-bottom: 16px;
+      }
+      .form-group {
+        margin: 12px 0;
+      }
       #contact label {
-        flex-direction: column;
-        align-items: flex-start;
+        color: #1f2937;
+        font-weight: bold;
       }
-
-      #about strong,
-      #contact label>span {
-        text-align: left;
-        padding-right: 0;
-        margin-bottom: 2px;
+      .input-form {
+        background-color: #ffffff;
+        color: #111827;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        padding: 8px;
+        margin: 4px 0;
+        border: 1px solid #94a3b8;
       }
-
-      #contact input,
-      #contact textarea,
       #contact button {
-        width: 100%;
+        background-color: #003366;
+        color: #ffffff;
+        font-weight: bold;
+        padding: 8px 14px;
+        margin: 8px 6px 0 0;
+        border: 1px solid #003366;
       }
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <h1>Ini Header</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Beranda</a></li>
-        <li><a href="#about">Tentang</a></li>
-        <li><a href="#contact">Kontak</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section id="home">
-      <h2>Selamat Datang</h2>
-      <p>Ini contoh paragraf HTML.</p>
-    </section>
-
-    <section id="about">
-      <h2>Tentang Saya</h2>
-      <p><strong>NIM:</strong> 0344300002</p>
-      <p><strong>Nama Lengkap:</strong> Yohanes Setiawan Japriadi &#128526;</p>
-      <p><strong>Tempat Lahir:</strong> Pangkalpinang</p>
-      <p><strong>Tanggal Lahir:</strong> 1 Januari 2000</p>
-      <p><strong>Hobi:</strong> Memasak, coding, dan bermain musik &#127926;</p>
-      <p><strong>Pasangan:</strong> Belum ada &hearts;</p>
-      <p><strong>Pekerjaan:</strong> Dosen di ISB Atma Luhur &copy; 2025</p>
-      <p><strong>Nama Orang Tua:</strong> Bapak Setiawan dan Ibu Maria</p>
-      <p><strong>Nama Kakak:</strong> Antonius Setiawan</p>
-      <p><strong>Nama Adik:</strong> Christina Setiawan</p>
-    </section>
-
-    <section id="contact">
-      <h2>Kontak Kami</h2>
-      <form action="" method="GET">
-
-        <label for="txtNama"><span>Nama:</span>
-          <input type="text" id="txtNama" name="txtNama" placeholder="Masukkan nama" required autocomplete="name">
-        </label>
-
-        <label for="txtEmail"><span>Email:</span>
-          <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukkan email" required autocomplete="email">
-        </label>
-
-        <label for="txtPesan"><span>Pesan Anda:</span>
-          <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..." required></textarea>
-        </label>
-
-        <button type="submit">Kirim</button>
-        <button type="reset">Batal</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Yohanes Setiawan Japriadi [0344300002]</p>
-  </footer>
-</body>
-
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Profil Mahasiswa</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="home">
+        <h2>Selamat Datang</h2>
+        <p>
+          Halo, saya Nama Mahasiswa. Saya sedang mempelajari Pemrograman Web
+          Dasar.
+        </p>
+        <img
+          style="height: 220px; width: auto;"
+          src="img/foto-profil.jpeg"
+          alt="Foto profil Nama Mahasiswa"
+        />
+      </section>
+      <section id="about">
+        <h2>Tentang Saya</h2>
+        <article>
+          <h3>Profil Singkat</h3>
+          <p>Saya mahasiswa Program Studi Sistem Informasi.</p>
+          <h3>Target Belajar</h3>
+          <ol>
+            <li>Memahami struktur HTML5.</li>
+            <li>Menyusun halaman web semantik.</li>
+            <li>Memvalidasi dokumen HTML.</li>
+          </ol>
+        </article>
+      </section>
+      <section id="contact">
+        <h2>Kontak</h2>
+        <p>
+          Kunjungi <a href="https://github.com/username">profil GitHub saya</a>.
+        </p>
+        <form action="index.html" method="get">
+          <div class="form-group">
+            <label for="nama">Nama Lengkap</label><br />
+            <input
+              class="input-form"
+              type="text"
+              id="nama"
+              name="nama"
+              placeholder="Masukkan nama lengkap"
+              minlength="3"
+              maxlength="50"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label><br />
+            <input
+              class="input-form"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="nama@email.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="semester">Semester</label><br />
+            <input
+              class="input-form"
+              type="number"
+              id="semester"
+              name="semester"
+              min="1"
+              max="14"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="tanggal">Tanggal Kunjungan</label><br />
+            <input
+              class="input-form"
+              type="date"
+              id="tanggal"
+              name="tanggal"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <p>Jenis Pesan</p>
+            <input
+              type="radio"
+              id="pertanyaan"
+              name="jenis_pesan"
+              value="pertanyaan"
+              required
+            />
+            <label for="pertanyaan">Pertanyaan</label>
+            <input type="radio" id="saran" name="jenis_pesan" value="saran" />
+            <label for="saran">Saran</label>
+          </div>
+          <div class="form-group">
+            <p>Topik yang Diminati</p>
+            <input type="checkbox" id="minat-html" name="minat" value="HTML" />
+            <label for="minat-html">HTML</label>
+            <input type="checkbox" id="minat-css" name="minat" value="CSS" />
+            <label for="minat-css">CSS</label>
+          </div>
+          <div class="form-group">
+            <label for="prodi">Program Studi</label><br />
+            <select class="input-form" id="prodi" name="prodi" required>
+              <option value="">-- Pilih Program Studi --</option>
+              <option value="SI">Sistem Informasi</option>
+              <option value="TI">Teknik Informatika</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pesan">Pesan</label><br />
+            <textarea
+              class="input-form"
+              id="pesan"
+              name="pesan"
+              maxlength="300"
+              placeholder="Tulis pesan Anda"
+              required
+            ></textarea>
+          </div>
+          <button type="submit">Kirim</button>
+          <button type="reset">Batal</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2026 Nama Mahasiswa [NIM]</p>
+    </footer>
+  </body>
 </html>
