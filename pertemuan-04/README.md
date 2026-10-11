@@ -1,19 +1,19 @@
-# pertemuan-04
+# Pertemuan 4 - CSS3 Layout dan Responsive Web Design
 
-NIM : 0344300002<br>
-Nama : Yohanes Setiawan Japriadi<br>
+## Pengembangan
 
+- Perubahan yang dilakukan: [tuliskan secara singkat]
+- Commit dan push GitHub: [tuliskan secara singkat]
 
-nur cantik banget
+## Pengujia
 
-Hari ini, Rabu 15 Oktober 2025, saya mempelajari:
-<ol>
-  <li>copy-paste isi index.html (pertemuan-03) ke index.html (pertemuan-04)</li>
-  <li>ganti internal css ke eksternal css</li>
-  <li>aturan css untuk body dan global reset</li>
-  <li>styling section#home</li>
-  <li>styling footer</li>
-  <li>styling navigasi</li>
-  <li>styling header mode mobile</li>
-  <li>styling navigasi mode mobile</li>
-</ol>
+- Perangkat bergerak: [ukuran viewport dan hasil pengujian]
+- Desktop: [ukuran viewport dan hasil pengujian]
+- Galat dan perbaikan: [tuliskan jika ada]
+- Validasi CSS: [hasil validasi dan perbaikan yang dilakukan jika terdapat galat]
+
+## Repositori
+
+URL GitHub: [tempel URL repositori]
+Isi README.md berdasarkan hasil pengembangan, pengujian, dan validasi yang benar - benar
+dilakukan.
