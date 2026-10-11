@@ -40,6 +40,12 @@ nav a {
   text-decoration: none;
 }
 
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
 #home {
   background-color: #ffffff;
   border: 1px solid #d0d7de;
@@ -74,8 +80,10 @@ nav a {
 #about p {
   line-height: 1.5;
 }
+
 #contact {
   margin: 0;
+  grid-column: 1 / -1;
 }
 #contact h2 {
   margin-top: 0;
