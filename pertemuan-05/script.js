@@ -1,4 +1,8 @@
 const navMenu = document.getElementById("navMenu");
+const isOpen = navMenu.classList.toggle("nav-open");
+navMenu.classList.contains("nav-open");
+navMenu.classList.toggle("nav-open");
+
 const contactForm = document.getElementById("contactForm");
 
 const jenisPesan = document.querySelector('input[name="jenis_pesan"]:checked');
