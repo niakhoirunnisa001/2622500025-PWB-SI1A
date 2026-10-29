@@ -1,19 +1,20 @@
-# Pertemuan 4 - CSS3 Layout dan Responsive Web Design
+P5 - JavaScript Dasar, DOM, Event, dan Validasi Sisi Klien
 
-## Pengembangan
+Deskripsi
+Dokumentasi pengembangan halaman web pada P5, meliputi JavaScript, DOM, event listener, interaksi
+navigasi, dan validasi formulir sisi klien.
 
-- Perubahan yang dilakukan: [tuliskan secara singkat]
-- Commit dan push GitHub: [tuliskan secara singkat]
+Fitur dan Pengembangan
+[Nama fitur/tahap]: [Penjelasan singkat perubahan yang dilakukan.]
+[Nama fitur/tahap]: [Penjelasan singkat perubahan yang dilakukan.]
+Tambahkan entri setiap kali ada perkembangan penting pada proyek.
 
-## Pengujia
+Pengujian
+[Fitur yang diuji]: [Langkah pengujian dan hasil aktual.]
+[Fitur yang diuji]: [Langkah pengujian dan hasil aktual.]
+Perbarui bagian ini setelah melakukan pengujian atau debugging yang relevan.
+Riwayat Pengembangan
 
-- Perangkat bergerak: [ukuran viewport dan hasil pengujian]
-- Desktop: [ukuran viewport dan hasil pengujian]
-- Galat dan perbaikan: [tuliskan jika ada]
-- Validasi CSS: [hasil validasi dan perbaikan yang dilakukan jika terdapat galat]
-
-## Repositori
-
-URL GitHub: [tempel URL repositori]
-Isi README.md berdasarkan hasil pengembangan, pengujian, dan validasi yang benar - benar
-dilakukan.
+Catat perkembangan melalui commit Git yang bermakna.
+[Pesan commit]: [Ringkasan perubahan dan hasil pengujiannya.]
+[Pesan commit]: [Ringkasan perubahan dan hasil pengujiannya.]
