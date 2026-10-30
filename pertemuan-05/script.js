@@ -33,3 +33,7 @@ navToggle.addEventListener("click", () => {
 contactForm.addEventListener("submit", (event) => {
   console.log("Form dikirim.");
 });
+
+contactForm.addEventListener("input", () => {
+  formFeedback.textContent = "";
+});
