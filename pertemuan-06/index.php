@@ -15,4 +15,6 @@ $catatanTambahan = null;
 
 $batasSemester = 8;
 $sisaSemester = $batasSemester - $semester;
+$semesterValid = $semester >= 1 && $semester <= $batasSemester;
+$statusSemester = ($semesterValid && $statusAktif) ? "Sesuai rentang" : "Perlu diperiksa"
 ?>
