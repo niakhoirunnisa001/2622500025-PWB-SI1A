@@ -30,9 +30,9 @@ navToggle.addEventListener("click", () => {
   console.log("Tombol navigasi diklik.");
 });
 
-contactForm.addEventListener("submit", (event) => {
-  console.log("Form dikirim.");
-});
+// contactForm.addEventListener("submit", (event) => {
+//   console.log("Form dikirim.");
+// });
 
 contactForm.addEventListener("input", () => {
   formFeedback.textContent = "";
@@ -40,4 +40,8 @@ contactForm.addEventListener("input", () => {
 
 contactForm.addEventListener("reset", () => {
   formFeedback.textContent = "";
+});
+
+contactForm.addEventListener("submit", (event) => {
+  console.log(event);
 });
