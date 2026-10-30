@@ -43,5 +43,5 @@ contactForm.addEventListener("reset", () => {
 });
 
 contactForm.addEventListener("submit", (event) => {
-  console.log(event);
+  event.preventDefault();
 });
