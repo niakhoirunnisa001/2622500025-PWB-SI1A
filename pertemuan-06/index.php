@@ -34,5 +34,13 @@ if ($semester < 3) {
 $namaProdi = ($programStudi == "SI") ? "Sistem Informasi" : (($programStudi == "TI") ? "Teknik
 Informatika" : "Lainnya");
 
-
+switch ($programStudi) {
+case "SI":$fokusProgramStudi = "Sistem informasi dan proses bisnis";
+break;
+case "TI":
+$fokusProgramStudi = "Komputasi dan pengembangan perangkat lunak";
+break;
+default:
+$fokusProgramStudi = "Belum ditentukan";
+}
 ?>
