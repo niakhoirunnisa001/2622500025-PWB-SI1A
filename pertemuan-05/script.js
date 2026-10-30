@@ -1,3 +1,4 @@
+const navToggle = document.getElementById("navToggle");
 const navMenu = document.getElementById("navMenu");
 const isOpen = navMenu.classList.toggle("nav-open");
 navMenu.classList.contains("nav-open");
