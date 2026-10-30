@@ -1,6 +1,11 @@
 * {
   box-sizing: border-box;
 }
+#navMenu.nav-open {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
 body {
   margin: 0;
   padding: 12px;
