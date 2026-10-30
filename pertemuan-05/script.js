@@ -4,8 +4,6 @@ const isOpen = navMenu.classList.toggle("nav-open");
 navMenu.classList.contains("nav-open");
 navMenu.classList.toggle("nav-open");
 
-const contactForm = document.getElementById("contactForm");
-
 const nama = namaInput.value.trim();
 const email = emailInput.value.trim();
 const semester = Number(semesterInput.value);
@@ -65,13 +63,13 @@ if (pesan.length > 300) {
   formFeedback.textContent = "Pesan maksimal 300 karakter.";
   return;
 }
-// navToggle.addEventListener("click", () => {
-//   console.log("Tombol navigasi diklik.");
-// });
 
-// contactForm.addEventListener("submit", (event) => {
-//   console.log("Form dikirim.");
-// });
+const contactForm = document.getElementById("contactForm");
+
+contactForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  alert("Form berhasil dikirim!");
+});
 
 contactForm.addEventListener("input", () => {
   formFeedback.textContent = "";
@@ -79,10 +77,6 @@ contactForm.addEventListener("input", () => {
 
 contactForm.addEventListener("reset", () => {
   formFeedback.textContent = "";
-});
-
-contactForm.addEventListener("submit", (event) => {
-  event.preventDefault();
 });
 
 navToggle.addEventListener("click", () => {
