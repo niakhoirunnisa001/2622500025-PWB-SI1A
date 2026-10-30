@@ -44,6 +44,12 @@ switch ($programStudi) {
     default:
         $fokusProgramStudi = "Belum ditentukan";
 }
+
+if (isset($_GET['nama'])) {
+$nama = $_GET['nama'];
+echo "Nama yang diterima: " . htmlspecialchars($nama, ENT_QUOTES, 'UTF-8');
+}
+
 ?>
 <!doctype html>
 <html lang="id">
@@ -155,7 +161,7 @@ switch ($programStudi) {
             >profil GitHub saya</a
           >.
         </p>
-        <form id="contactForm" action="index.php" method="get" novalidate>
+       <form id="contactForm" action="index.php" method="get" novalidate>
           <div class="form-group">
             <label for="nama">Nama Lengkap</label><br />
             <input
