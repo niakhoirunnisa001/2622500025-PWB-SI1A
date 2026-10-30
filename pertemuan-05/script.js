@@ -4,10 +4,6 @@ const isOpen = navMenu.classList.toggle("nav-open");
 navMenu.classList.contains("nav-open");
 navMenu.classList.toggle("nav-open");
 
-navToggle.addEventListener("click", () => {
-  console.log("Tombol navigasi diklik.");
-});
-
 const contactForm = document.getElementById("contactForm");
 
 const jenisPesan = document.querySelector('input[name="jenis_pesan"]:checked');
@@ -29,3 +25,11 @@ elemen.textContent = "teks baru";
 const formFeedback = document.getElementById("formFeedback");
 formFeedback.textContent = "Form berhasil divalidasi.";
 formFeedback.textContent = "";
+
+navToggle.addEventListener("click", () => {
+  console.log("Tombol navigasi diklik.");
+});
+
+contactForm.addEventListener("submit", (event) => {
+  console.log("Form dikirim.");
+});
