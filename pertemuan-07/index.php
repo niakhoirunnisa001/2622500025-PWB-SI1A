@@ -161,7 +161,7 @@ echo "Nama yang diterima: " . htmlspecialchars($nama, ENT_QUOTES, 'UTF-8');
             >profil GitHub saya</a
           >.
         </p>
-       <form id="contactForm" action="index.php" method="get" novalidate>
+       <form id="contactForm" action="indexGET.php" method="get" novalidate>
           <div class="form-group">
             <label for="nama">Nama Lengkap</label><br />
             <input
