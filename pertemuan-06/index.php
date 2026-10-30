@@ -31,5 +31,8 @@ if ($semester < 3) {
 } else {
     $keteranganSemester = "Semester akhir";
 }
+$namaProdi = ($programStudi == "SI") ? "Sistem Informasi" : (($programStudi == "TI") ? "Teknik
+Informatika" : "Lainnya");
+
 
 ?>
