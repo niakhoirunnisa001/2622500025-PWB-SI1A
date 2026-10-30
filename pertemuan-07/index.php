@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 const NAMA_MATA_KULIAH = "Pemrograman Web Dasar";
 const PROFIL_GITHUB    = "satpamal";
 
@@ -132,6 +132,19 @@ $minat = $_POST['minat'] ?? [];
 if (isset($_POST['nama'])) {
 $nama = $_POST['nama'];
 echo "Nama yang diterima: " . htmlspecialchars($nama, ENT_QUOTES, 'UTF-8');
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+$_SESSION['pesanKesalahan'] = $pesanKesalahan;
+$_SESSION['nama'] = $nama;
+$_SESSION['email'] = $email;
+$_SESSION['semester'] = $semesterForm;
+$_SESSION['tanggal'] = $tanggal;
+$_SESSION['jenis_pesan'] = $jenisPesan;
+$_SESSION['prodi'] = $prodi;
+$_SESSION['minat'] = $minat;
+$_SESSION['pesan'] = $pesan;
+header('Location: index.php');
+exit;
 }
 ?>
 <!doctype html>
