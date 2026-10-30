@@ -12,4 +12,7 @@ $semester = 2;
 $ipk = 3.75;
 $statusAktif = true;
 $catatanTambahan = null;
+
+$batasSemester = 8;
+$sisaSemester = $batasSemester - $semester;
 ?>
