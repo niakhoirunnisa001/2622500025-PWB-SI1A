@@ -37,3 +37,7 @@ contactForm.addEventListener("submit", (event) => {
 contactForm.addEventListener("input", () => {
   formFeedback.textContent = "";
 });
+
+contactForm.addEventListener("reset", () => {
+  formFeedback.textContent = "";
+});
