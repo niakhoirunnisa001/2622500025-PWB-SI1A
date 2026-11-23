@@ -1,147 +1,520 @@
 <?php
 session_start();
-require_once __DIR__ . '/fungsi.php';
+
+// P7: penggunaan POST
+$nama = trim((string) ($_POST['nama'] ?? ''));
+$email = trim((string) ($_POST['email'] ?? ''));
+$semesterForm = trim((string) ($_POST['semester'] ?? ''));
+$jenisPesan = trim((string) ($_POST['jenis_pesan'] ?? ''));
+$prodi = trim((string) ($_POST['prodi'] ?? ''));
+$pesan = trim((string) ($_POST['pesan'] ?? ''));
+$tanggal = trim((string) ($_POST['tanggal'] ?? ''));
+$minat = $_POST['minat'] ?? [];
+$pesanKesalahan = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (trim($nama ?? '') === '') {
+        $pesanKesalahan .= 'Nama lengkap wajib diisi. ';
+    }
+
+    if (trim($email) === '') {
+        $pesanKesalahan .= 'Email wajib diisi. ';
+    }
+
+    if (trim($semesterForm) === '') {
+        $pesanKesalahan .= 'Semester wajib diisi. ';
+    }
+
+    if (trim($tanggal) === '') {
+        $pesanKesalahan .= 'Tanggal kunjungan wajib diisi. ';
+    }
+
+    if ($jenisPesan === '') {
+        $pesanKesalahan .= 'Jenis pesan wajib dipilih. ';
+    }
+
+    if ($prodi === '') {
+        $pesanKesalahan .= 'Program studi wajib dipilih. ';
+    }
+
+    if (trim($pesan) === '') {
+        $pesanKesalahan .= 'Pesan wajib diisi. ';
+    }
+
+    if (empty($minat)) {
+        $pesanKesalahan .= 'Minat wajib dipilih minimal satu. ';
+    }
+
+    if (trim($semesterForm) !== '') {
+        $semesterValid = filter_var(
+            $semesterForm,
+            FILTER_VALIDATE_INT
+        );
+
+        if (
+            $semesterValid === false ||
+            $semesterValid < 1 ||
+            $semesterValid > 14
+        ) {
+            $pesanKesalahan .= 'Semester harus berupa bilangan bulat antara 1 dan 14. ';
+        }
+    }
+
+    if (trim($email) !== '') {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            $pesanKesalahan .= 'Format email tidak valid. ';
+        }
+    }
+
+    if (!in_array($jenisPesan, ['pertanyaan', 'saran'], true)) {
+        $pesanKesalahan .= 'Jenis pesan tidak valid. ';
+    }
+
+    if (!in_array($prodi, ['SI', 'TI'], true)) {
+        $pesanKesalahan .= 'Program studi tidak valid. ';
+    }
+
+    $minatDiizinkan = ['HTML', 'CSS'];
+
+    if (!is_array($minat)) {
+        $pesanKesalahan .= 'Format pilihan topik tidak valid. ';
+    } else {
+        foreach ($minat as $topik) {
+            if (!in_array($topik, $minatDiizinkan, true)) {
+                $pesanKesalahan .= 'Pilihan topik tidak valid. ';
+                break;
+            }
+        }
+    }
+}
+
+// P6: PHP dasar dan pemrograman sisi peladen
+
+// Bagian 1: Variabel dan konstanta
+$nim             = "2622500025";
+$namaMahasiswa   = "NIA KHOIRUNNISA";
+$programStudi    = "SI";
+$tahunAkademik   = "2026/2027";
+$semester = 4;
+$ipk = 3.75;
+$statusAktif = true;
+$catatanTambahan = null;
+
+const NAMA_MATA_KULIAH = "Pemrograman Web Dasar";
+const PROFIL_GITHUB = "satpamal";
+
+// Bagian 2: Operator
+$batasSemester = 8;
+$sisaSemester = $batasSemester - $semester;
+$semesterValid = $semester >= 1 && $semester <= $batasSemester;
+$statusSemester = ($semesterValid && $statusAktif) ? "Sesuai rentang" : "Perlu diperiksa";
+
+// Bagian 3: Percabangan if-elseif-else
+if ($semester < 3) {
+    $keteranganSemester = "Semester awal";
+} elseif ($semester <= 6) {
+    $keteranganSemester = "Semester menengah";
+} else {
+    $keteranganSemester = "Semester akhir";
+}
+
+$namaProdi = ($programStudi == "SI")
+    ? "Sistem Informasi"
+    : (($programStudi == "TI") ? "Teknik Informatika" : "Lainnya");
+
+// Bagian 4: Percabangan switch-case-default
+switch ($programStudi) {
+    case "SI":
+        $fokusProgramStudi = "Sistem informasi dan proses bisnis";
+        break;
+
+    case "TI":
+        $fokusProgramStudi = "Komputasi dan pengembangan perangkat lunak";
+        break;
+
+    default:
+        $fokusProgramStudi = "Belum ditentukan";
+}
+
+// P7
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION['pesanKesalahan'] = $pesanKesalahan;
+    $_SESSION['nama'] = $nama;
+    $_SESSION['email'] = $email;
+    $_SESSION['semester'] = $semesterForm;
+    $_SESSION['tanggal'] = $tanggal;
+    $_SESSION['jenis_pesan'] = $jenisPesan;
+    $_SESSION['prodi'] = $prodi;
+    $_SESSION['minat'] = $minat;
+    $_SESSION['pesan'] = $pesan;
+
+    header('Location: index.php');
+    exit;
+}
+
+$pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
+$nama = $_SESSION['nama'] ?? '';
+$email = $_SESSION['email'] ?? '';
+$semesterForm = $_SESSION['semester'] ?? '';
+$tanggal = $_SESSION['tanggal'] ?? date("Y-m-d");
+$jenisPesan = $_SESSION['jenis_pesan'] ?? '';
+$prodi = $_SESSION['prodi'] ?? '';
+$minat = $_SESSION['minat'] ?? '';
+$pesan = $_SESSION['pesan'] ?? '';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Judul Halaman</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Mahasiswa</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <header>
-    <h1>Ini Header</h1>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
-      &#9776;
-    </button>
-    <nav>
-      <ul>
-        <li><a href="#home">Beranda</a></li>
-        <li><a href="#about">Tentang</a></li>
-        <li><a href="#contact">Kontak</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <div class="header-top">
+            <h1>Profil Mahasiswa</h1>
 
-  <main>
-    <section id="home">
-      <h2>Selamat Datang</h2>
-      <?php
-      echo "halo dunia!<br>";
-      echo "nama saya hadi";
-      ?>
-      <p>Ini contoh paragraf HTML.</p>
-    </section>
+            <button
+                class="nav-toggle"
+                id="navToggle"
+                type="button"
+                aria-label="Buka navigasi"
+                aria-controls="navMenu"
+                aria-expanded="false">
+                &#9776;
+            </button>
+        </div>
 
-    <section id="biodata">
-      <h2>Biodata Sederhana Mahasiswa</h2>
-      <form action="proses.php" method="POST">
+        <nav>
+            <ul id="navMenu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <label for="txtNim"><span>NIM:</span>
-          <input type="text" id="txtNim" name="txtNim" placeholder="Masukkan NIM" required>
-        </label>
+    <main>
+        <section id="home">
+            <h2>Selamat Datang</h2>
 
-        <label for="txtNmLengkap"><span>Nama Lengkap:</span>
-          <input type="text" id="txtNmLengkap" name="txtNmLengkap" placeholder="Masukkan Nama Lengkap" required>
-        </label>
+            <p>
+                Halo, saya <strong><?php echo $namaMahasiswa; ?></strong>.
+                Saya sedang mempelajari matakuliah
+                <strong><?php print NAMA_MATA_KULIAH; ?></strong>
+                pada tahun akademik <?php echo $tahunAkademik; ?>.
+            </p>
 
-        <label for="txtT4Lhr"><span>Tempat Lahir:</span>
-          <input type="text" id="txtT4Lhr" name="txtT4Lhr" placeholder="Masukkan Tempat Lahir" required>
-        </label>
+            <img src="img/foto-profil.jpg" alt="Foto profil Nama Mahasiswa" />
+        </section>
 
-        <label for="txtTglLhr"><span>Tanggal Lahir:</span>
-          <input type="text" id="txtTglLhr" name="txtTglLhr" placeholder="Masukkan Tanggal Lahir" required>
-        </label>
+        <section id="about">
+            <h2>Tentang Saya</h2>
 
-        <label for="txtHobi"><span>Hobi:</span>
-          <input type="text" id="txtHobi" name="txtHobi" placeholder="Masukkan Hobi" required>
-        </label>
+            <article>
+                <h3>Profil Singkat</h3>
 
-        <label for="txtPasangan"><span>Pasangan:</span>
-          <input type="text" id="txtPasangan" name="txtPasangan" placeholder="Masukkan Pasangan" required>
-        </label>
+                <p>
+                    Program Studi:
+                    <?php echo $namaProdi . " (" . $programStudi . ")"; ?>
+                </p>
 
-        <label for="txtKerja"><span>Pekerjaan:</span>
-          <input type="text" id="txtKerja" name="txtKerja" placeholder="Masukkan Pekerjaan" required>
-        </label>
+                <p>
+                    Fokus program studi:
+                    <?php echo $fokusProgramStudi; ?>
+                </p>
 
-        <label for="txtNmOrtu"><span>Nama Orang Tua:</span>
-          <input type="text" id="txtNmOrtu" name="txtNmOrtu" placeholder="Masukkan Nama Orang Tua" required>
-        </label>
+                <p>
+                    Status mahasiswa:
+                    <?php echo $statusAktif ? "Aktif" : "Tidak aktif"; ?>
+                </p>
 
-        <label for="txtNmKakak"><span>Nama Kakak:</span>
-          <input type="text" id="txtNmKakak" name="txtNmKakak" placeholder="Masukkan Nama Kakak" required>
-        </label>
+                <p>
+                    Semester:
+                    <?php echo $semester . " (" . $keteranganSemester . ")"; ?>
+                </p>
 
-        <label for="txtNmAdik"><span>Nama Adik:</span>
-          <input type="text" id="txtNmAdik" name="txtNmAdik" placeholder="Masukkan Nama Adik" required>
-        </label>
+                <p>
+                    Sisa semester hingga batas:
+                    <?php echo $sisaSemester; ?>
+                </p>
 
-        <button type="submit">Kirim</button>
-        <button type="reset">Batal</button>
-      </form>
-    </section>
+                <p>
+                    Pemeriksaan rentang semester:
+                    <?php echo $statusSemester; ?>
+                </p>
 
-    <?php
-    $biodata = $_SESSION["biodata"] ?? [];
+                <p>
+                    IPK:
+                    <?php echo number_format($ipk, 2, ',', '.'); ?>
+                </p>
 
-    $fieldConfig = [
-      "nim" => ["label" => "NIM:", "suffix" => ""],
-      "nama" => ["label" => "Nama Lengkap:", "suffix" => " &#128526;"],
-      "tempat" => ["label" => "Tempat Lahir:", "suffix" => ""],
-      "tanggal" => ["label" => "Tanggal Lahir:", "suffix" => ""],
-      "hobi" => ["label" => "Hobi:", "suffix" => " &#127926;"],
-      "pasangan" => ["label" => "Pasangan:", "suffix" => " &hearts;"],
-      "pekerjaan" => ["label" => "Pekerjaan:", "suffix" => " &copy; 2025"],
-      "ortu" => ["label" => "Nama Orang Tua:", "suffix" => ""],
-      "kakak" => ["label" => "Nama Kakak:", "suffix" => ""],
-      "adik" => ["label" => "Nama Adik:", "suffix" => ""],
-    ];
-    ?>
+                <p>
+                    Catatan tambahan:
+                    <?php echo $catatanTambahan === null ? "Belum ada" : $catatanTambahan; ?>
+                </p>
 
-    <section id="about">
-      <h2>Tentang Saya</h2>
-      <?= tampilkanBiodata($fieldConfig, $biodata) ?>
-    </section>
+                <h3>Target Belajar (Perulangan for)</h3>
 
-    <section id="contact">
-      <h2>Kontak Kami</h2>
-      <form action="proses.php" method="POST">
+                <ol>
+                    <?php
+                    // Perulangan for tanpa array; materi larik dibahas pada P9.
+                    for ($i = 1; $i <= 5; $i++) {
+                        echo "<li>Target belajar ke-" . $i . ": ";
 
-        <label for="txtNama"><span>Nama:</span>
-          <input type="text" id="txtNama" name="txtNama" placeholder="Masukkan nama" required autocomplete="name">
-        </label>
+                        switch ($i) {
+                            case 1:
+                                echo "Memahami sintaks dasar PHP.";
+                                break;
 
-        <label for="txtEmail"><span>Email:</span>
-          <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukkan email" required autocomplete="email">
-        </label>
+                            case 2:
+                                echo "Menggunakan variabel dan konstanta.";
+                                break;
 
-        <label for="txtPesan"><span>Pesan Anda:</span>
-          <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..." required></textarea>
-          <small id="charCount">0/200 karakter</small>
-        </label>
+                            case 3:
+                                echo "Menerapkan operator dan percabangan.";
+                                break;
 
-        <button type="submit">Kirim</button>
-        <button type="reset">Batal</button>
-      </form>
+                            case 4:
+                                echo "Menggunakan perulangan for dan while.";
+                                break;
 
-      <br>
-      <hr>
-      <h2>Yang menghubungi kami</h2>
-      <?php include 'read_inc.php'; ?>
-    </section>
-  </main>
+                            default:
+                                echo "Belum dipetakan";
+                                break;
+                        }
 
-  <footer>
-    <p>&copy; 2025 Yohanes Setiawan Japriadi [0344300002]</p>
-  </footer>
+                        echo "</li>";
+                    }
+                    ?>
+                </ol>
 
-  <script src="script.js"></script>
+                <h3>Semester (Perulangan while):</h3>
+
+                <ol>
+                    <?php
+                    $nomorSemester = 1;
+
+                    while ($nomorSemester <= 3) {
+                        echo "<li>Semester " . $nomorSemester . "</li>";
+                        $nomorSemester++; // operator penugasan
+                    }
+                    ?>
+                </ol>
+            </article>
+        </section>
+
+        <section id="contact">
+            <h2>Kontak</h2>
+
+            <?php if ($pesanKesalahan !== ''): ?>
+                <p class="form-feedback-error">
+                    <?= htmlspecialchars($pesanKesalahan, ENT_QUOTES, 'UTF-8') ?>
+                </p>
+
+                <?php
+                unset(
+                    $_SESSION['pesanKesalahan']
+                );
+                ?>
+            <?php endif; ?>
+
+            <p>
+                Kunjungi
+                <a target="_blank" href="https://github.com/<?= PROFIL_GITHUB ?>">
+                    profil GitHub saya
+                </a>.
+            </p>
+
+            <form id="contactForm" action="index.php" method="post" novalidate>
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label><br />
+
+                    <input
+                        class="input-form"
+                        type="text"
+                        id="nama"
+                        name="nama"
+                        placeholder="Masukkan nama lengkap"
+                        minlength="3"
+                        maxlength="50"
+                        required />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label><br />
+
+                    <input
+                        class="input-form"
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="nama@email.com"
+                        required />
+                </div>
+
+                <div class="form-group">
+                    <label for="semester">Semester</label><br />
+
+                    <input
+                        class="input-form"
+                        type="number"
+                        id="semester"
+                        name="semester"
+                        min="1"
+                        max="14"
+                        required />
+                </div>
+
+                <div class="form-group">
+                    <label for="tanggal">Tanggal Kunjungan</label><br />
+
+                    <input
+                        class="input-form"
+                        type="date"
+                        id="tanggal"
+                        name="tanggal"
+                        required />
+                </div>
+
+                <div class="form-group">
+                    <p>Jenis Pesan</p>
+
+                    <input
+                        type="radio"
+                        id="pertanyaan"
+                        name="jenis_pesan"
+                        value="pertanyaan"
+                        required />
+
+                    <label for="pertanyaan">Pertanyaan</label>
+
+                    <input
+                        type="radio"
+                        id="saran"
+                        name="jenis_pesan"
+                        value="saran" />
+
+                    <label for="saran">Saran</label>
+                </div>
+
+                <div class="form-group">
+                    <p>Topik yang Diminati</p>
+
+                    <input
+                        type="checkbox"
+                        id="minat-html"
+                        name="minat[]"
+                        value="HTML" />
+
+                    <label for="minat-html">HTML</label>
+
+                    <input
+                        type="checkbox"
+                        id="minat-css"
+                        name="minat[]"
+                        value="CSS" />
+
+                    <label for="minat-css">CSS</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="prodi">Program Studi</label><br />
+
+                    <select class="input-form" id="prodi" name="prodi" required>
+                        <option value="">-- Pilih Program Studi --</option>
+                        <option value="SI">Sistem Informasi</option>
+                        <option value="TI">Teknik Informatika</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="pesan">Pesan</label><br />
+
+                    <textarea
+                        class="input-form"
+                        id="pesan"
+                        name="pesan"
+                        maxlength="300"
+                        placeholder="Tulis pesan Anda"
+                        required></textarea>
+                </div>
+
+                <button type="submit">Kirim</button>
+                <button type="reset">Batal</button>
+
+                <p id="formFeedback"></p>
+            </form>
+
+            <?php if (!empty($nama)): ?>
+                <h3>Data yang Diterima Peladen</h3>
+
+                <p>
+                    Nama:
+                    <?= htmlspecialchars($nama, ENT_QUOTES, 'UTF-8') ?>
+                </p>
+
+                <p>
+                    Email:
+                    <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>
+                </p>
+
+                <p>
+                    Semester:
+                    <?= htmlspecialchars($semesterForm, ENT_QUOTES, 'UTF-8') ?>
+                </p>
+
+                <p>
+                    Tanggal kunjungan:
+                    <?= htmlspecialchars($tanggal, ENT_QUOTES, 'UTF-8') ?>
+                </p>
+
+                <p>
+                    Jenis pesan:
+                    <?= htmlspecialchars($jenisPesan, ENT_QUOTES, 'UTF-8') ?>
+                </p>
+
+                <p>
+                    Program studi:
+                    <?= htmlspecialchars($prodi, ENT_QUOTES, 'UTF-8') ?>
+                </p>
+
+                <p>Minat:</p>
+
+                <?php if (is_array($minat) && count($minat) > 0): ?>
+                    <ul>
+                        <?php foreach ($minat as $topik): ?>
+                            <li>
+                                <?= htmlspecialchars((string) $topik, ENT_QUOTES, 'UTF-8') ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>Tidak ada minat yang dipilih.</p>
+                <?php endif; ?>
+
+                <p>Pesan:</p>
+
+                <p>
+                    <?= nl2br(htmlspecialchars($pesan, ENT_QUOTES, 'UTF-8')) ?>
+                </p>
+            <?php endif; ?>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            &copy; <?= date("Y") ?>
+            <?php echo $namaMahasiswa; ?>
+            [<?= $nim ?>]
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
